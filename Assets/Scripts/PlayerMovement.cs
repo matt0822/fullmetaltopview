@@ -30,6 +30,12 @@ public class PlayerMovement : MonoBehaviour
     {
         _moveInput.x = Input.GetAxisRaw("Horizontal");
         _moveInput.y = Input.GetAxisRaw("Vertical");
+        
+        if (Mathf.Abs(_moveInput.x)>0 && Mathf.Abs(_moveInput.y)>0)
+        {
+            _moveInput.x /= Mathf.Sqrt(2);
+            _moveInput.y /= Mathf.Sqrt(2);
+        }
     }
 
     void FixedUpdate()
@@ -40,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void run(float lerpAmount)
     {
+
         var targetSpeedX = _moveInput.x * MAXSPEED;
         var targetSpeedY = _moveInput.y * MAXSPEED;
 
